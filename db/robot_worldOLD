@@ -1,0 +1,19 @@
+---
+robots:
+- id: 1
+  name: Mr Roboto
+  city: Denver
+  state: CO
+  avatar: https://robohash.org/dunno
+  birthdate: '2001'
+  date_hired: '2001'
+  department: HR
+- id: 2
+  name: Ji Kim
+  city: LA
+  state: California
+  avatar: https://robohash.org/ribeye
+  birthdate: oct 6
+  date_hired: Oct 7
+  department: Interactive Media
+total: 2

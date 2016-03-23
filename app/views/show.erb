@@ -1,0 +1,14 @@
+<a href="/robots">Back</a><br/>
+<img src="<%= @robot.avatar %>">
+<b><h3><%= @robot.name %></h3></b>
+<p>City: <%= @robot.city %></p>
+<p>State: <%= @robot.state %></p>
+<p>Birthdate: <%= @robot.birthdate %></p>
+<p>Date Hired: <%= @robot.date_hired %></p>
+<p>Department: <%= @robot.department.capitalize %></p><br/>
+
+<a href="/robots/<%= @robot.id %>/edit">Edit</a>
+<form action="/robots/<%= @robot.id %>" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="delete"/>
+</form>
