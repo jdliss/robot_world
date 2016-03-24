@@ -1,5 +1,3 @@
-require 'models/robot_world'
-
 class RobotWorldApp < Sinatra::Base
   # attr_reader :robot_world
   set :root, File.expand_path("..", __dir__)
@@ -39,7 +37,7 @@ class RobotWorldApp < Sinatra::Base
   end
 
   delete '/robots/:id' do |id|
-    robot_world.delete(id.to_i)
+    robot_world.destroy(id.to_i)
     redirect '/robots'
   end
 

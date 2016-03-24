@@ -1,5 +1,4 @@
 require "yaml/store"
-require_relative 'robot'
 
 class RobotWorld
   attr_reader :world
@@ -55,9 +54,16 @@ class RobotWorld
     end
   end
 
-  def delete(id)
+  def destroy(id)
     world.transaction do
       world['robots'].delete_if { |robot| robot["id"] == id }
+    end
+  end
+
+  def destroy_all
+    world.transaction do
+      world['robots'] = []
+      world['total'] = 0
     end
   end
 end

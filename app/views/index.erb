@@ -3,7 +3,7 @@
 <% @robots.each do |robot| %>
 <ul>
   <img src="<%= robot.avatar %>" />
-<a href="robots/<%= robot.id %>"><h4><%= robot.name %></h4></a>
+<a class="robot" href="robots/<%= robot.id %>"><h4><%= robot.name %></h4></a>
   <li>City: <%= robot.city %></li>
   <li>State: <%= robot.state %></li>
   <li>Birthdate: <%= robot.birthdate %></li>
