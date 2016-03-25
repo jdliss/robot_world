@@ -20,7 +20,7 @@ class RobotWorld
                             'birthdate'  => robot['birthdate'],
                             'date_hired' => robot['date_hired'],
                             'department' => robot['department']
-                              }
+                          }
     end
   end
 
@@ -39,7 +39,7 @@ class RobotWorld
   end
 
   def find(id)
-    all.find { |robot| robot.id == id }
+    all.find { |robot|  robot.id == id }
   end
 
   def update(id, robot)

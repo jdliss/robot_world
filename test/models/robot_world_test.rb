@@ -17,7 +17,6 @@ class RobotWorldTest < Minitest::Test
     assert_equal 1, robot.id
   end
 
-
   def test_can_find_all_robots
     create_robots
 

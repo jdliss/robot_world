@@ -42,7 +42,11 @@ class RobotWorldApp < Sinatra::Base
   end
 
   def robot_world
-    world = YAML::Store.new('db/robot_world')
+    if ENV['RACK_ENV'] == 'test'
+      world = YAML::Store.new('db/robot_world_test')
+    else
+      world = YAML::Store.new('db/robot_world')
+    end
     @robot_world ||= RobotWorld.new(world)
   end
 end

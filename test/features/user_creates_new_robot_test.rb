@@ -17,6 +17,7 @@ class UserSeesGreetingOnHomepage < Minitest::Test
     fill_in 'robot[department]', with: 'anchor'
     click_button 'submit'
 
+    save_and_open_page
     within('#robot') do
       assert page.has_content?("fred")
     end
