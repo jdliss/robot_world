@@ -5,6 +5,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require 'tilt/erb'
 require 'capybara/dsl'
+require 'sequel'
 
 Capybara.app = RobotWorldApp
 
@@ -15,21 +16,20 @@ module TestHelpers
   end
 
   def robot_world
-    database = YAML::Store.new('db/robot_world_test')
-    @robot_world ||= RobotWorld.new(database)
+    world = Sequel.sqlite("db/robot_world_test.sqlite3")
+    @robot_world ||= RobotWorld.new(world)
   end
 
   def create_robots(num = 2)
     num.times do |i|
       robot_world.create({
-        'id'         => "#{i + 1}",
-        'name'       => "a name #{i + 1}",
-        'city'       => "a city #{i + 1}",
-        'state'      => "a state #{i + 1}",
-        'avatar'     => "a avatar #{i + 1}",
-        'birthdate'  => "a birthdate #{i + 1}",
-        'date_hired' => "a date_hired #{i + 1}",
-        'department' => "a department #{i + 1}"
+        :name       => "a name #{i + 1}",
+        :city       => "a city #{i + 1}",
+        :state      => "a state #{i + 1}",
+        :avatar     => "a avatar #{i + 1}",
+        :birthdate  => "a birthdate #{i + 1}",
+        :date_hired => "a date_hired #{i + 1}",
+        :department => "a department #{i + 1}"
       })
     end
   end

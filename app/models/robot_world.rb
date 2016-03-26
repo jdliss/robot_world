@@ -1,27 +1,17 @@
-require "yaml/store"
+require 'sequel'
+require 'time'
 
 class RobotWorld
-  attr_reader :world
+  attr_reader :world,
+              :robot_world
 
   def initialize(database)
     @world = database
+    @robot_world = database.from(:robots)
   end
 
   def create(robot)
-    world.transaction do
-      world['robots'] ||= []
-      world['total']  ||= 0
-      world['total']   += 1
-      world['robots']  << { 'id'         => world['total'],
-                            'name'       => robot['name'],
-                            'city'       => robot['city'],
-                            'state'      => robot['state'],
-                            'avatar'     => robot['avatar'],
-                            'birthdate'  => robot['birthdate'],
-                            'date_hired' => robot['date_hired'],
-                            'department' => robot['department']
-                          }
-    end
+    robot_world.insert(robot)
   end
 
   def all
@@ -29,41 +19,54 @@ class RobotWorld
   end
 
   def raw_robots
-    world.transaction do
-      world['robots'] || []
-    end
+    robot_world.select.to_a
   end
 
   def raw_robot(id)
-    raw_robots.find { |robot| robot["id"].to_s == id }
+    robot_world.where(id: id).to_a.first
   end
 
   def find(id)
-    all.find { |robot|  robot.id == id }
+    Robot.new(robot_world.where(id: id).to_a.first)
   end
 
   def update(id, robot)
-    world.transaction do
-      target = world['robots'].find { |data| data["id"] == id }
-      target["name"] = robot[:name]
-      target["city"] = robot[:city]
-      target['state'] = robot[:state]
-      target['birthdate'] = robot[:birthdate]
-      target['date_hired'] = robot[:date_hired]
-      target['department'] = robot[:department]
-    end
+    robot_world.where(id: id).update(robot)
   end
 
   def destroy(id)
-    world.transaction do
-      world['robots'].delete_if { |robot| robot["id"] == id }
-    end
+    robot_world.where(id: id).delete
   end
 
   def destroy_all
-    world.transaction do
-      world['robots'] = []
-      world['total'] = 0
+    robot_world.delete
+  end
+
+  def average_robot_age
+    birthdates = world.select(:birthdate).from(:robots)
+    ages = birthdates.map do |pair|
+      2016 - Time.parse(pair[:birthdate]).strftime("%Y").to_i
     end
+    (ages.reduce(:+)/ages.size.to_f).round(1)
+  end
+
+  def num_hired_each_year
+    years = world.select(:date_hired).from(:robots)
+    hired_each_year = Hash.new(0)
+    years.each do |year|
+      formatted_year = Time.parse(year[:date_hired]).strftime("%Y")
+      hired_each_year[formatted_year] += 1
+    end
+    hired_each_year.sort.reverse
+  end
+
+  def num_robots_in(symbol)
+    data = world.select(symbol).from(:robots)
+    counted_data = Hash.new(0)
+    # require 'pry'; binding.pry
+    data.each do |item|
+      counted_data[item[symbol].capitalize] += 1
+    end
+    counted_data
   end
 end

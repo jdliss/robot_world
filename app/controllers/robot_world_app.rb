@@ -1,9 +1,13 @@
 class RobotWorldApp < Sinatra::Base
-  # attr_reader :robot_world
   set :root, File.expand_path("..", __dir__)
   set :method_override, true
 
   get '/' do
+    @average_age = robot_world.average_robot_age
+    @num_hired_per_year = robot_world.num_hired_each_year
+    @num_robots_in_department = robot_world.num_robots_in(:department).sort
+    @num_robots_in_city = robot_world.num_robots_in(:city).sort
+    @num_robots_in_state = robot_world.num_robots_in(:state).sort
     erb :dashboard
   end
 
@@ -43,9 +47,9 @@ class RobotWorldApp < Sinatra::Base
 
   def robot_world
     if ENV['RACK_ENV'] == 'test'
-      world = YAML::Store.new('db/robot_world_test')
+      world = Sequel.sqlite("db/robot_world_test.sqlite")
     else
-      world = YAML::Store.new('db/robot_world')
+      world = Sequel.sqlite("db/robot_world.sqlite")
     end
     @robot_world ||= RobotWorld.new(world)
   end
