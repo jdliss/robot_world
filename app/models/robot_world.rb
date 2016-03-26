@@ -69,4 +69,8 @@ class RobotWorld
     end
     counted_data
   end
+
+  def total_robots
+    robot_world.to_a.size
+  end
 end

@@ -1,7 +1,15 @@
 img {
   border-radius: 10px;
-  max-width:330px;
-  max-height:195px;
-  width: auto;
-  height: auto;
+  max-width:200px;
+  max-height:100px;
+}
+
+#outer
+{
+    width:100%;
+    text-align: center;
+}
+.inner
+{
+    display: inline-block;
 }

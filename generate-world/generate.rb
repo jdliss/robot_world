@@ -24,6 +24,6 @@ def generate_robot
   }
 end
 
-100.times do
+1000.times do
   robot_world.create(generate_robot)
 end

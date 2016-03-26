@@ -1,13 +1,10 @@
-<a href="/">Back to Dashboard</a>
-<h1>World:</h1>
-<% @robots.each do |robot| %>
-<ul>
-  <img src="<%= robot.avatar %>" />
-<a id="robot" href="robots/<%= robot.id %>"><h4><%= robot.name %></h4></a>
-  <li>City: <%= robot.city %></li>
-  <li>State: <%= robot.state %></li>
-  <li>Birthdate: <%= robot.birthdate %></li>
-  <li>Date Hired: <%= robot.date_hired %></li>
-  <li>Department: <%= robot.department.capitalize %></li>
-</ul><br/>
-<% end  %>
+<div class="row center">
+  <% @robots.each do |r| %>
+    <div class="col s4">
+      <% r.each do |robot| %>
+        <img src="<%= robot.avatar %>" />
+        <h6><a id="robot" href="robots/<%= robot.id %>"><%= robot.name %></a></h6>
+      <% end  %>
+    </div>
+  <% end %>
+</div>

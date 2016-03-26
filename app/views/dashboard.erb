@@ -2,77 +2,33 @@
    <div class="col s12 center-align">
      <div class="card blue-grey darken-1">
        <div class="card-content white-text">
-         <span class="card-title"></span>
-         <h4>Average Age</h4>
+         <span class="card-title">
+           <h4>Population</h4>
+           <p><%= @total_robots %></p>
+         </span>
+         <h5>Average Age</h5>
          <p><%= @average_age %></p>
        </div>
      </div>
    </div>
  </div>
-
- <div class="row">
+ <div class='row'>
+  <% @all_info.each do |dataset| %>
     <div class="col s3">
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
           <span class="card-title"></span>
           <table>
-            <th><h5>Robots Hired Each Year</h5></th>
-            <% @num_hired_per_year.each do |year, num| %>
+            <th><h5><%= dataset[1] %></h5></th>
+            <% dataset[0].each do |key, value| %>
             <tr>
-              <td><%= year %></td>
-              <td><%= num %></td>
+              <td><%= key %></td>
+              <td><%= value %></td>
             </tr>
             <% end %>
           </table>
         </div>
       </div>
     </div>
-    <div class="col s3">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title"></span>
-          <table>
-            <th><h5>Robots By Department</h5></th>
-            <% @num_robots_in_department.each do |department, num| %>
-            <tr>
-              <td><%= department %></td>
-              <td><%= num %></td>
-            </tr>
-            <% end %>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="col s3">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title"></span>
-          <table>
-            <th><h5>Robots By City</h5></th>
-            <% @num_robots_in_city.each do |city, num| %>
-            <tr>
-              <td><%= city %></td>
-              <td><%= num %></td>
-            </tr>
-            <% end %>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="col s3">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title"></span>
-          <table>
-            <th><h5>Robots By State</h5></th>
-            <% @num_robots_in_state.each do |state, num| %>
-            <tr>
-              <td><%= state %></td>
-              <td><%= num %></td>
-            </tr>
-            <% end %>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
+  <% end %>
+</div>
