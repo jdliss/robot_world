@@ -21,10 +21,11 @@ class RobotWorldApp < Sinatra::Base
   get '/robots' do
     robots = robot_world.all
     size = robots.size
-    robots1 = robots.take(size/3)
-    robots2 = robots.drop(size/3).take(size/3)
-    robots3 = robots.drop(size/3).drop(size/3)
-    @robots = [robots1, robots2, robots3]
+    robots1 = robots.take(size/4)
+    robots2 = robots.take(size/2).drop(size/4)
+    robots3 = robots.drop(size/2).take(size/4)
+    robots4 = robots.drop(size/2).drop(size/4)
+    @robots = [robots1, robots2, robots3, robots4]
     erb :index
   end
 

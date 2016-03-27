@@ -63,7 +63,6 @@ class RobotWorld
   def num_robots_in(symbol)
     data = world.select(symbol).from(:robots)
     counted_data = Hash.new(0)
-    # require 'pry'; binding.pry
     data.each do |item|
       counted_data[item[symbol].capitalize] += 1
     end

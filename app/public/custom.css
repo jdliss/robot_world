@@ -13,3 +13,11 @@ img {
 {
     display: inline-block;
 }
+
+.padding-top {
+  padding-top: 40px;
+}
+
+.padding-bottom {
+  padding-bottom: 40px;
+}

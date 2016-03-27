@@ -1,9 +1,16 @@
 <div class="row center">
   <% @robots.each do |r| %>
-    <div class="col s4">
+    <div class="col s3">
       <% r.each do |robot| %>
-        <img src="<%= robot.avatar %>" />
-        <h6><a id="robot" href="robots/<%= robot.id %>"><%= robot.name %></a></h6>
+        <!-- <img src="<%= robot.avatar %>" />
+        <h6><a id="robot" href="robots/<%= robot.id %>"><%= robot.name %></a></h6> -->
+        <div class="chip hoverable z-depth-1 truncate">
+          <a id="robot" href="robots/<%= robot.id %>">
+            <img src="<%= robot.avatar %>">
+            <%= robot.name %>
+          </a>
+        </div>
+        <br/><br/>
       <% end  %>
     </div>
   <% end %>
