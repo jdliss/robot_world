@@ -1,3 +1,5 @@
+require 'faker'
+require 'time'
 require 'bundler'
 Bundler.require
 
@@ -10,8 +12,7 @@ Dir.glob(File.join(APP_ROOT, 'app', 'controllers', '*.rb')).each { |file| requir
 # require the model(s)
 Dir.glob(File.join(APP_ROOT, 'app', 'models', '*.rb')).each { |file| require file }
 
-# require the migrate file
-# Dir.glob(File.join(APP_ROOT, 'db', 'migrate', '*.rb')).each { |file| require file }
+
 
 # configure TaskManagerApp settings
 class RobotWorldApp < Sinatra::Base

@@ -1,19 +1,25 @@
-<img src="<%= @robot.avatar %>" /><br/><br/>
-<form action="/robots/<%= @robot.id %>" method="post">
-  <input type="hidden" name="_method" value="PUT" />
-  name<br/>
-  <input type="text" name="robot[name]" value="<%= @robot.name %>" /><br/><br/>
-  city<br/>
-  <input type="text" name="robot[city]" value="<%= @robot.city %>" /><br/><br/>
-  state<br/>
-  <input type="text" name="robot[state]" value="<%= @robot.state %>" /><br/><br/>
-  avatar<br/>
-  <input type="text" name="robot[avatar]" value="<%= @robot.avatar %>" /><br/><br/>
-  birthdate<br/>
-  <input type="text" name="robot[birthdate]" value="<%= @robot.birthdate %>" /><br/><br/>
-  date hired<br/>
-  <input type="text" name="robot[date_hired]" value="<%= @robot.date_hired %>" /><br/><br/>
-  department<br/>
-  <input type="text" name="robot[department]" value="<%= @robot.department %>" /><br/><br/>
-  <input type="submit" value='submit' />
-</form>
+<div class="container padding-bottom">
+    <div class="center">
+    <img src="<%= @robot.avatar %>" /><br/><br/>
+  </div>
+  <form action="/robots/<%= @robot.id %>" method="post">
+    <input type="hidden" name="_method" value="PUT" />
+    name<br/>
+    <input type="text" name="robot[name]" value="<%= @robot.name %>" /><br/><br/>
+    city<br/>
+    <input type="text" name="robot[city]" value="<%= @robot.city %>" /><br/><br/>
+    state<br/>
+    <input type="text" name="robot[state]" value="<%= @robot.state %>" /><br/><br/>
+    avatar<br/>
+    <input type="text" name="robot[avatar]" value="<%= @robot.avatar %>" /><br/><br/>
+    birthdate<br/>
+    <input type="text" name="robot[birthdate]" value="<%= @robot.birthdate %>" /><br/><br/>
+    date hired<br/>
+    <input type="text" name="robot[date_hired]" value="<%= @robot.date_hired %>" /><br/><br/>
+    department<br/>
+    <input type="text" name="robot[department]" value="<%= @robot.department %>" /><br/><br/>
+    <div class="center">
+      <input class="btn-large" type="submit" value="submit">
+    </div>
+  </form>
+</div>

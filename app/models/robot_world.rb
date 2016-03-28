@@ -72,4 +72,22 @@ class RobotWorld
   def total_robots
     robot_world.to_a.size
   end
+
+  def generate_robot
+    robot = {
+      :name       => Faker::Name.name,
+      :city       => Faker::Address.city,
+      :state      => Faker::Address.state,
+      :avatar     => Faker::Avatar.image,
+      :birthdate  => Faker::Date.birthday.strftime("%F"),
+      :date_hired => Faker::Time.between(Faker::Date.birthday,Time.now).to_s[0..9],
+      :department => Faker::Company.profession
+    }
+  end
+
+  def generate(num)
+    num.times do
+      robot_world.create(generate_robot)
+    end
+  end
 end
